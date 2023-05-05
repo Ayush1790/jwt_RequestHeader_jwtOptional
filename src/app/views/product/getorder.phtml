@@ -1,0 +1,17 @@
+<table class="table table-bordered table-stripped">
+    <caption>table shows ordered list</caption>
+    <thead>
+        <th>order id</th>
+        <th>product id</th>
+        <th>user id</th>
+        <th>quantity</th>
+        <th>amount</th>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($data as $key => $value) {
+            echo "<tr><td>" . $value['order_id'] . "</td><td>" . $value['product_id'] . "</td><td>" . $value['user_id'] . "</td><td>" . $value['qty'] . "</td><td>" . $value['amount'] . "</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>

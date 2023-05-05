@@ -1,0 +1,29 @@
+<?php
+include_once APP_PATH . '/assets/header.php';
+?>
+<div class="container">
+  <?php
+  echo "<div class='row'>";
+  $c = 0;
+  foreach ($data as $key => $value) {
+    echo "<div class='col-4'>";
+    echo "<div class='card' style='width: 18rem;'>
+       <img class='card-img-top' src='../../../public/assets/img/" . $value['img'] . "  ' alt='Card image cap' height=300 width=200>
+       <div class='card-body'>
+         <h5 class='card-title text-center'>" . $value['product_name'] . "</h5>
+         <h5 class='card-title text-center'>" . $value['price'] . "</h5>
+         <form action='product/add' method='post'>
+          <input type='hidden' value='$value[product_id]' name='id'/>
+          <input type='submit' value='Add Order' />
+         </form>
+       </div>
+     </div>
+     </div>
+     ";
+    $c++;
+    if ($c == 3) {
+      echo "</div><div class='row'>";
+    }
+  }
+  ?>
+</div>

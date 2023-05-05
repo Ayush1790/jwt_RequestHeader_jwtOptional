@@ -1,0 +1,98 @@
+<h1>User's Details</h1>
+<table class="table table-bordered table-striped">
+    <caption>User's details</caption>
+    <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>role</th>
+        <th>pincode</th>
+        <th>password</th>
+        <th colspan='3'>Action</th>
+    </thead>
+    <tbody>
+        <form action="admin/user" method="post">
+            <?php
+            foreach ($data['users'] as $userskey => $users) {
+                echo "<tr id='users_" . $users['id'] . "'>
+            <td><input type='number' class='form-control' id=id_" . $users['id'] . " readonly disabled value=" . $users['id'] . " name='id'/></td>
+            <td><input type='text'   class='form-control' id=name_" . $users['id'] . " readonly value=" . $users['name'] . " name='name' /></td>
+            <td><input type='text'   class='form-control'id=email_" . $users['id'] . " readonly value=" . $users['email'] . " name='email'/></td>
+            <td><select id=role_" . $users['id'] . " >
+            <option>" . $users['role'] . "</option>
+            <option>user</option>
+            <option>accountant</option>
+            <option>manager</option>
+            </select></td>
+            <td><input type='number' class='form-control'  id=pin_" . $users['id'] . " readonly  value=" . $users['pincode'] . " name='pincode'/></td>
+            <td><input type='number' class='form-control' id=pswd_" . $users['id'] . "  readonly value=" . $users['pswd'] . " name='pswd'/></td>
+            <td><input type='button' class='btn btn-warning editUser'  readonly value=Edit name='type' onclick=editUser(this) id=edit_" . $users['id'] . " /></td>
+            <td><input type='button' class='btn btn-warning updateUser'  readonly value=Update name='type' onclick=updateUser(this) id=update_" . $users['id'] . " /></td>
+            <td><input type='button' class='btn btn-danger'  readonly value=Delete name='type' onclick=deleteUser(this) id=" . $users['id'] . " /></td>
+            </tr>";
+            }
+            ?>
+        </form>
+    </tbody>
+</table>
+<h1>Product's details</h1>
+<table class="table table-bordered table-striped">
+    <caption>Product's details</caption>
+    <thead>
+        <th>product_id</th>
+        <th>product_name</th>
+        <th>quantity</th>
+        <th>price</th>
+        <th>Description</th>
+        <th colspan="3">Action</th>
+    </thead>
+    <tbody>
+        <form action="admin/user" method="post">
+            <?php
+            foreach ($data['products'] as $productkey => $products) {
+                echo "<tr id='products_" . $products['id'] . "'>
+                    <td><input type='number' class='form-control'disabled id=id_" . $products['product_id'] . " readonly value=" . $products['product_id'] . " name='id'/></td>
+                    <td><input type='text'   class='form-control' id=name_" . $products['product_id'] . " readonly value=" . $products['product_name'] . " name='name' /></td>
+                    <td><input type='text'   class='form-control' id=qty_" . $products['product_id'] . " readonly value=" . $products['qty'] . " name='qty'/></td>
+                    <td><input type='number' class='form-control' id=price" . $products['product_id'] . " readonly value=" . $products['price'] . " name='price'/></td>
+                    <td><input type='text'   class='form-control' id=desc" . $products['product_id'] . " readonly value=" . $products['desc'] . " name='desc'/></td>
+                    <td><input type='button' class='btn btn-warning editProduct' readonly value=Edit name='type' onclick=editProduct(this) id=edit_" . $products['product_id'] . " /></td>
+                    <td><input type='button' class='btn btn-warning updateProduct' readonly value=Update name='type' onclick=updateProduct(this) id=update_" . $products['product_id'] . " /></td>
+                    <td><input type='button' class='btn btn-danger' readonly value=Delete name='type' onclick=deleteProduct(this) id=" . $products['product_id'] . " /></td>
+            </tr>";
+            }
+            ?>
+        </form>
+    </tbody>
+</table>
+<h1>Order's details</h1>
+<table class="table table-bordered table-striped">
+    <caption>Order's details</caption>
+    <thead>
+        <th>order_id</th>
+        <th>product_id</th>
+        <th>user_id</th>
+        <th>qty</th>
+        <th>price</th>
+        <th colspan='3'>Action</th>
+    </thead>
+    <tbody>
+        <form action="admin/order" method="post">
+            <?php
+            foreach ($data['orders'] as $orderkey => $orders) {
+                echo "<tr id='orders_" . $orders['id'] . "'>
+                <td><input type='number' class='form-control' id=order_id_" . $orders['order_id'] . " readonly disabled value=" . $orders['order_id'] . " name='order_id'/></td>
+                <td><input type='number' class='form-control' id=product_id" . $orders['order_id'] . " readonly value=" . $orders['product_id'] . " name='product_id' /></td>
+                <td><input type='number' class='form-control' id=user_id" .  $orders['order_id'] . " readonly value=" . $orders['user_id'] . " name='user_id'/></td>
+                <td><input type='number' class='form-control' id=qty" . $orders['order_id'] . " readonly value=" . $orders['qty'] . " name='qty'/></td>
+                <td><input type='number' class='form-control' id=price" . $orders['order_id'] . " readonly value=" . $orders['amount'] . " name='price'/></td>
+                <td><input type='button' class='btn btn-warning editOrder'  value=Edit name='type' onclick=editOrder(this) id=editOrder_" . $orders['order_id'] . " /></td>
+                <td><input type='button' class='btn btn-warning updateOrder'  value=Update name='type' onclick=updateOrder(this) id=updateOrder_" . $orders['order_id'] . " /></td>
+                <td><input type='button' class='btn btn-danger' readonly value=Delete name='type' onclick=deleteOrder(this) id=" . $orders['order_id'] . " /></td>
+                </tr>
+                ";
+            }
+            ?>
+        </form>
+    </tbody>
+</table>

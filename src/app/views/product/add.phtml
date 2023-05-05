@@ -1,0 +1,29 @@
+<!-- Product section-->
+<section class='py-0'>
+    <div class='container px-4 px-lg-5 my-2'>
+        <div class='row gx-4 gx-lg-5 align-items-center'>
+            <div class='col-md-6'>
+                <img class='card-img-top mt-5 mb-md-0' src='../../../public/assets/img/<?php echo $data[0]['img'] ?>' alt='...' />
+            </div>
+            <div class='col-md-6'>
+                <div class='small mb-1'>SKU: BST-<?php echo $data[0]['product_id'] ?></div>
+                <h1 class='display-8 fw-bolder'><?php echo $data[0]['product_name'] ?> item template</h1>
+                <div class='fs-5 mb-5'>
+                    <span class='text-decoration-line-through'><?php echo $data[0]['price'] + 50 ?></span>
+                    <span><?php echo $data[0]['price'] ?></span>
+                </div>
+                <p class='lead'>
+                    <?php echo $data[0]['desc'] ?>
+                </p>
+                <div class='d-flex'>
+                    <form action='order' method='post'>
+                        <input class='form-control text-center me-3' id='inputQuantity' type='num' value='1' style='max-width: 3rem' name='qty' />
+                        <input type='hidden' value=<?php echo $data[0]['product_id'] ?> name='id' />
+                        <input class='btn btn-outline-dark flex-shrink-0' type='submit' value='order' />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Related items section-->
