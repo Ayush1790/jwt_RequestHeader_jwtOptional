@@ -1,30 +1,56 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use MyApp\Controllers\IndexController;
+use MyApp\Models\Users;
+use MyApp\Models\Products;
+use MyApp\Models\Orders;
 
 class IndexControllerTest extends AbstractUnitTest
 //class UnitTest extends \PHPUnit\Framework\TestCase
 {
-
-    public static function addDataProvider(): array
+    public function testAdd()
     {
-        return array(
-            array(1,2,3),
-            array(0,0,0),
-            array(-1,-1,-2),
-        );
-    }
+        $userModel = new Users();
+        $userModel->name = 'cedcoss1';
+        $userModel->email = 'cedcoss@cedcoss.com';
+        $userModel->pswd = 1;
+        $userModel->role = 'user';
+        $userModel->pincode = 1;
+        $userModel->gender = 'male';
+        $result = $userModel->save();
+        $this->assertEquals(1, $result);
 
-    /**
-     * @dataProvider addDataProvider
-     */
-    public function testAdd($a, $b, $expected)
-    {
-        $indexController = new IndexController();
-        $result = $indexController->addAction($a, $b);
-        $this->assertEquals($expected, $result);
+        $result = $userModel->delete();
+        $this->assertEquals(1, $result);
+
+        $products = new Products();
+        $products->product_name = 'book';
+        $products->img = 'book.png';
+        $products->qty = 20;
+        $products->price = 500;
+        $products->desc = "boooooooooooook";
+        $result = $products->save();
+        $this->assertEquals(1, $result);
+
+        $result=$products->delete();
+        $this->assertEquals(1, $result);
+
+        $order=new Orders();
+        $order->product_id=5;
+        $order->user_id=2;
+        $order->qty=10;
+        $order->amount=1000;
+        $result = $order->save();
+        $this->assertEquals(1, $result);
+
+        $result=$order->delete();
+        $this->assertEquals(1, $result);
+
+
+
+
     }
 }

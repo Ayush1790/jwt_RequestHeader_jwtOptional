@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(".updateProduct").hide();
     $(".updateOrder").hide();
 })
+// code for delete user
 function deleteUser(data) {
     let id = data.id;
     $.ajax({
@@ -11,10 +12,10 @@ function deleteUser(data) {
         type: 'post',
         datatype: 'json'
     }).done(function () {
-        window.location = 'admin';
+         window.location = 'admin';
     })
 }
-
+// code for edit user
 async function editUser(data) {
     let id = data.id.split("_");
     id = id[1];
@@ -23,28 +24,29 @@ async function editUser(data) {
     $("#edit_" + id).hide();
 
 }
-
+// code for update user
 function updateUser(data) {
     let id = data.id.split("_");
     id = id[1];
     let name = $("#name_" + id).val();
     let email = $("#email_" + id).val();
-    let price = $("#price_" + id).val();
-    let desc = $("#desc_" + id).val();
+    let role = $("#role_" + id).val();
+    let pin = $("#pin_" + id).val();
     let pswd = $("#pswd_" + id).val();
     $.ajax({
         url: 'admin/user',
-        data: { 'id': id, "type": 'edit', 'name': name, 'email': email, 'price': price, 'desc': desc, 'pswd': pswd },
+        data: { 'id': id, "type": 'edit', 'name': name, 'email': email, 'pin': pin, 'role': role, 'pswd': pswd },
         type: 'post',
         datatype: 'json'
     }).done(function () {
         $(data).parent().parent().children().children().attr('readonly');
         $("#update_" + id).hide();
         $("#edit_" + id).show();
-        window.location = 'admin';
+          window.location = 'admin';
+        
     })
 }
-
+// code for delete product
 function deleteProduct(data) {
     let id = data.id;
     $.ajax({
@@ -53,9 +55,10 @@ function deleteProduct(data) {
         type: 'post',
         datatype: 'json'
     }).done(function () {
-        window.location = 'admin';
+         window.location = 'admin';
     })
 }
+// code for edit product
 async function editProduct(data) {
     let id = data.id.split("_");
     id = id[1];
@@ -64,6 +67,7 @@ async function editProduct(data) {
     $("#edit_" + id).hide();
 
 }
+// code for update product
 function updateProduct(data) {
     let id = data.id.split("_");
     id = id[1];
@@ -80,9 +84,10 @@ function updateProduct(data) {
         $(data).parent().parent().children().children().attr('readonly');
         $("#update_" + id).hide();
         $("#edit_" + id).show();
-        window.location = 'admin';
+         window.location = 'admin';
     })
 }
+// code for delete order
 function deleteOrder(data) {
     let id = data.id;
     $.ajax({
@@ -91,9 +96,10 @@ function deleteOrder(data) {
         type: 'post',
         datatype: 'json'
     }).done(function () {
-        window.location = 'admin';
+         window.location = 'admin';
     })
 }
+// code for edit order
 async function editOrder(data) {
     let id = data.id.split("_");
     id = id[1];
@@ -102,6 +108,7 @@ async function editOrder(data) {
     $("#updateOrder_" + id).show();
     $("#editOrder_" + id).hide();
 }
+// code for update order
 function updateOrder(data) {
     let id = data.id.split("_");
     id = id[1];
@@ -120,6 +127,6 @@ function updateOrder(data) {
         $(data).parent().parent().children().children().attr('readonly');
         $("#update_" + id).hide();
         $("#edit_" + id).show();
-        window.location = 'admin';
+         window.location = 'admin';
     })
 }

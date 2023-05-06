@@ -10,7 +10,6 @@ use Phalcon\Acl\Adapter\Memory;
 use Phalcon\Security\JWT\Token\Parser;
 use Phalcon\Security\JWT\Validator;
 
-use function PHPUnit\Framework\isNan;
 
 class Listener extends Injectable
 {
@@ -86,6 +85,8 @@ class Listener extends Injectable
             $acl->allow('admin', '*', '*');
             $acl->allow('guest', 'index', '*');
             $acl->allow('guest', 'product', 'index');
+            $acl->allow('guest', 'product', 'index');
+            $acl->allow('guest', 'login', '*');
             $acl->allow('guest', 'signup', '*');
             $acl->allow('user', 'signup', '*');
             $acl->allow('user', 'login', '*');

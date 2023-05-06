@@ -1,4 +1,5 @@
 <?php
+
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -6,6 +7,7 @@ use Phalcon\Mvc\Application;
 use Phalcon\Url;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Config;
+use Phalcon\Config\ConfigFactory;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Session\Manager;
 use Phalcon\Session\Adapter\Stream as StreamSession;
@@ -15,6 +17,7 @@ use Phalcon\Logger;
 use Phalcon\Logger\Adapter\Stream as StreamLogger;
 use MyApp\Handlers\Listener;
 use Phalcon\Events\Manager as EventsManager;
+use MyApp\Assets\Locale;
 
 $config = new Config([]);
 
@@ -36,6 +39,7 @@ $loader->registerNamespaces(
         'MyApp\Handlers' => APP_PATH . '/handlers/',
         'MyApp\Controllers' => APP_PATH . '/controllers/',
         'MyApp\Models' => APP_PATH . '/models/',
+        'MyApp\Assets' => APP_PATH . '/assets/',
         'Tests' => APP_PATH . '/../tests/',
     ]
 );
@@ -43,15 +47,8 @@ $loader->registerNamespaces(
 $loader->register();
 
 $container = new FactoryDefault();
-// $container->set('locale', (new Locale())->getTranslator());
-// $container->set(
-//     'view',
-//     function () {
-//         $view = new View();
-//         $view->setViewsDir(APP_PATH . '/views/');
-//         return $view;
-//     }
-// );
+$container->set('locale', (new Locale())->getTranslator());
+
 $container->set(
     'view',
     function () {
@@ -78,14 +75,15 @@ $container->set(
         $config = $factory->newInstance('php', $fileName);
         return $config;
     }
-  
+
 );
 $container->set(
     'db',
     function () {
-     return new Mysql($this["config"]->db->toArrray());
+        return new Mysql($this["config"]->db->toArrray());
     }
 );
+
 $container->set(
     'db',
     function () {
@@ -95,9 +93,9 @@ $container->set(
                 'username' => 'root',
                 'password' => 'secret',
                 'dbname'   => 'testPhlacon',
-                ]
-            );
-        }
+            ]
+        );
+    }
 );
 
 $container->set(
@@ -126,7 +124,7 @@ $container->set(
 $container->set(
     'logger',
     function () {
-        $adapter = new StreamLogger(APP_PATH.'/storage/logs/main.log');
+        $adapter = new StreamLogger(APP_PATH . '/storage/logs/main.log');
         $logger  = new Logger(
             'messages',
             [
@@ -171,7 +169,7 @@ $container->set(
 );
 $application = new Application($container);
 
-$eventsManager=new EventsManager();
+$eventsManager = new EventsManager();
 $eventsManager->attach(
     'application:beforeHandleRequest',
     new Listener()

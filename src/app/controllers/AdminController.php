@@ -41,7 +41,10 @@ class AdminController extends Controller
             $user->role = $_POST['role'];
             $user->pincode = $_POST['pin'];
             $user->pswd = $_POST['pswd'];
-            $user->save();
+            $success = $user->save();
+            if (!$success) {
+                $this->logger->error("updation faild -> reasons <br>" . implode('<br>', $user->getMessages()));
+            }
         }
     }
     public function productAction()

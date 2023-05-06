@@ -25,6 +25,12 @@
                                         ); ?></li>
     <li class="list-inline-item col"><?php echo Phalcon\Tag::linkTo(
                                             [
+                                                "product/addproduct",
+                                                "Add Product"
+                                            ]
+                                        ); ?></li>
+    <li class="list-inline-item col"><?php echo Phalcon\Tag::linkTo(
+                                            [
                                                 "setting",
                                                 "My Setting"
                                             ]
@@ -35,4 +41,15 @@
                                                 "Logout"
                                             ]
                                         ); ?></li>
+
+    <li class="list-inline-item col">
+        <form action="#" method='post'>
+            <select name="language" id="" onchange='this.form.submit()'>
+                <option selected><?php echo $_POST['language'] ?></option>
+                <option value="en">English</option>
+                <option value="fr">french</option>
+            </select>
+        </form>
+    </li>
+
 </ul>

@@ -8,6 +8,6 @@ class LogoutController extends Controller
     public function indexAction()
     {
         $this->session->destroy();
-        $this->response->redirect('signup');
+        $this->response->redirect('login');
     }
 }

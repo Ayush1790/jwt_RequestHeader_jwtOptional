@@ -1,3 +1,6 @@
+<?php
+include_once APP_PATH . '/assets/header.php';
+?>
 <table class="table table-bordered table-stripped">
     <caption>table shows ordered list</caption>
     <thead>
@@ -10,7 +13,9 @@
     <tbody>
         <?php
         foreach ($data as $key => $value) {
-            echo "<tr><td>" . $value['order_id'] . "</td><td>" . $value['product_id'] . "</td><td>" . $value['user_id'] . "</td><td>" . $value['qty'] . "</td><td>" . $value['amount'] . "</td></tr>";
+            echo "<tr><td>" . $value['order_id'] . "</td><td>" . $value['product_id'] . "</td>
+            <td>" . $value['user_id'] . "</td><td>" . $value['qty'] . "</td>
+            <td>" . $value['amount'] . "</td></tr>";
         }
         ?>
     </tbody>

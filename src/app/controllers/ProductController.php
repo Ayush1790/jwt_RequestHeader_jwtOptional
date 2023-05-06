@@ -58,7 +58,7 @@ class ProductController extends Controller
             if ($success) {
                 $this->response->redirect('product');
             } else {
-                $this->logger->error("order faild due to following reasons <br>" . implode('<br>', $order->getMessages()));
+                $this->logger->error("order faild - reasons <br>" . implode('<br>', $order->getMessages()));
                 $this->response->redirect('order');
             }
         } else {
@@ -73,5 +73,38 @@ class ProductController extends Controller
             \Phalcon\Db\Enum::FETCH_ASSOC
         );
         $this->view->data = $data;
+    }
+    public function addproductAction()
+    {
+        //redirect to view
+    }
+
+    public function productaddAction()
+    {
+        $product = new Products();
+        $data = array(
+            'product_name' => $this->escaper->escapeHtml($this->request->getPost('name')),
+            'img' => $this->request->getPost('file'),
+            'qty' => $this->escaper->escapeHtml($this->request->getPost('qty')),
+            'price' => $this->escaper->escapeHtml($this->request->getPost('price')),
+            'desc' => $this->escaper->escapeHtml($this->request->getPost('desc')),
+
+        );
+        $product->assign(
+            $data,
+            [
+                'product_name',
+                'img',
+                'qty',
+                'price',
+                'desc'
+            ]
+        );
+        $success = $product->save();
+        if (!$success) {
+            $this->logger->error("product addition faild - reasons <br>" . implode('<br>', $product->getMessages()));
+        } else {
+            $this->response->redirect('product');
+        }
     }
 }

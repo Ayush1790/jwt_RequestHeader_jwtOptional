@@ -1,6 +1,6 @@
 <?php
 
-namespace assets;
+namespace MyApp\Assets;
 
 use Phalcon\Di\Injectable;
 use Phalcon\Translate\Adapter\NativeArray;
@@ -15,20 +15,19 @@ class Locale extends Injectable
     public function getTranslator(): NativeArray
     {
         // Ask browser what is the best language
-        $language = $this->request->getBestLanguage();
+        $language = $this->request->getPost('language');
         $messages = [];
-        
-        $translationFile = APP_PATH.'/messages/' . $language . '.php';
+
+        $translationFile = APP_PATH . '/messages/' . $language . '.php';
 
         if (true !== file_exists($translationFile)) {
-            $translationFile = APP_PATH.'/messages/en.php';
+            $translationFile = APP_PATH . '/messages/en.php';
         }
-        
         require $translationFile;
 
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
-        
+
         return $factory->newInstance(
             'array',
             [
