@@ -49,6 +49,12 @@ class LoginController extends Controller
                 // The token
                 $token = $tokenObject->getToken();
                 $this->session->set('token', $token);
+                $this->cookies->set(
+                    'token',
+                    $token,
+                    time() + 15 * 86400
+                );
+                $this->cookies->send();
                 $this->session->set('role', $value['role']);
                 $this->session->set('id', $value['id']);
                 $this->response->redirect('product');

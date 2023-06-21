@@ -24,8 +24,8 @@ class Listener extends Injectable
         if ($controller == 'index' || $controller == 'login' || $controller == 'signup') {
             //accessible
         } else {
-            if ($this->session->has('token')) {
-                $tokenReceived = $this->session->get('token');
+            if ($this->cookies->has('token')) {
+                $tokenReceived = $this->cookies->get('token');
                 $now           = new \DateTimeImmutable();
                 $issued        = $now->getTimestamp();
                 $notBefore     = $now->modify('-1 minute')->getTimestamp();
