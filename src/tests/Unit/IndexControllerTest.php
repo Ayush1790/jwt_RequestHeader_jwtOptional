@@ -49,8 +49,5 @@ class IndexControllerTest extends AbstractUnitTest
         $result=$order->delete();
         $this->assertEquals(1, $result);
 
-
-
-
     }
 }

@@ -3,6 +3,7 @@ return [
     "db"=>[
         'host'     => 'testPhlacon',
         'username' => 'root',
-        'password' => 'secret'
+        'password' => 'secret',
+        'dbname'   => 'testPhlacon'
     ]
 ];

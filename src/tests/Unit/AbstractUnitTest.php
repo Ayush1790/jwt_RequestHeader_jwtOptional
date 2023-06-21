@@ -9,6 +9,7 @@ use Phalcon\Di\FactoryDefault;
 use Phalcon\Incubator\Test\PHPUnit\UnitTestCase;
 use PHPUnit\Framework\IncompleteTestError;
 use Phalcon\Db\Adapter\Pdo\Mysql;
+
 abstract class AbstractUnitTest extends UnitTestCase
 {
     private bool $loaded = false;
@@ -30,9 +31,9 @@ abstract class AbstractUnitTest extends UnitTestCase
                         'username' => 'root',
                         'password' => 'secret',
                         'dbname'   => 'testPhlacon',
-                        ]
-                    );
-                }
+                    ]
+                );
+            }
         );
         $this->loaded = true;
     }
